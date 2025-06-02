@@ -80,7 +80,7 @@ main, .pagina {
 #hero {
   min-height: 100vh;
   background: url('../images/hero-bg.webp') center center / cover no-repeat;
-  padding: 160px 0 100px;
+  padding: 100px 10px;
   position: relative;
   color: #fff;
   display: flex;
