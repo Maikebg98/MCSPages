@@ -5,11 +5,14 @@
 html, body {
   overflow-x: hidden;
   scroll-behavior: smooth;
+  font-size: 16px;
 }
 body {
   background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #333;
+  margin: 0;
+  padding: 0;
 }
 
 /* === NAVBAR === */
@@ -25,7 +28,6 @@ nav {
   height: 1.8rem;
   position: relative;
 }
-
 .custom-toggler-icon span {
   display: block;
   position: absolute;
@@ -40,39 +42,36 @@ nav {
   margin: 0;
   transform: translate(-50%, -50%);
 }
-
-/* Barras inicialmente empilhadas verticalmente */
 .custom-toggler-icon span:nth-child(1) {
-  top: calc(50% - 8px); /* deslocamento para cima */
+  top: calc(50% - 8px);
   transform: translate(-50%, -50%) rotate(0deg);
 }
-
 .custom-toggler-icon span:nth-child(2) {
   top: 50%;
   transform: translate(-50%, -50%) rotate(0deg);
 }
-
 .custom-toggler-icon span:nth-child(3) {
-  top: calc(50% + 8px); /* deslocamento para baixo */
+  top: calc(50% + 8px);
   transform: translate(-50%, -50%) rotate(0deg);
 }
-
-/* Quando aberto - transforma em X */
 button:not(.collapsed) .custom-toggler-icon span:nth-child(1) {
   top: 50%;
   transform: translate(-50%, -50%) rotate(45deg);
 }
-
 button:not(.collapsed) .custom-toggler-icon span:nth-child(2) {
   opacity: 0;
 }
-
 button:not(.collapsed) .custom-toggler-icon span:nth-child(3) {
   top: 50%;
   transform: translate(-50%, -50%) rotate(-45deg);
 }
+@media (min-width: 992px) {
+  #navbar-toggler {
+    display: none !important;
+  }
+}
 
-/* Main */
+/* === MAIN & PAGE === */
 main, .pagina {
   overflow-x: hidden;
 }
@@ -88,8 +87,6 @@ main, .pagina {
   justify-content: center;
   align-items: center;
 }
-
-/* Overlay escuro para contraste do texto */
 #hero::before {
   content: "";
   position: absolute;
@@ -105,26 +102,25 @@ main, .pagina {
   max-width: 85%;
   opacity: 0.95;
   border-radius: 2rem;
-  transition: transform 0.3s ease;
-  mix-blend-mode: multiply; /* opcional, depende da imagem/fundo */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  mix-blend-mode: multiply;
 }
-
 .hero-img:hover {
   transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
-
-/* Conteúdo acima do overlay */
 #hero .container {
   position: relative;
   z-index: 1;
   text-align: center;
 }
 
+/* === SCROLL MARGIN === */
 section {
   scroll-margin-top: 60px;
 }
 
-/* === CARDS INTERATIVOS (PORTFÓLIO) === */
+/* === PORTFÓLIO CARDS === */
 .projeto-card {
   transition: transform 0.2s ease;
   display: flex;
@@ -137,9 +133,8 @@ section {
   width: 100%;
 }
 .projeto-card:hover {
-  transform: translateY(-5px); /* Efeito leve de destaque sem overlay */
+  transform: translateY(-5px);
 }
-
 .card-body {
   display: flex;
   flex-direction: column;
@@ -147,11 +142,9 @@ section {
   justify-content: center;
   text-align: center;
 }
-
 .card-title {
   margin-bottom: 0.5rem;
 }
-
 .card-footer {
   background-color: #1e1e1e;
   color: white;
@@ -183,14 +176,13 @@ section {
   background-color: #1ebe5d;
   text-decoration: none;
 }
-
 @keyframes pulse {
   0% { transform: scale(1); }
   50% { transform: scale(1.1); }
   100% { transform: scale(1); }
 }
 
-/* Animação fadeIn para o conteúdo do modal */
+/* === MODAL ANIMATION === */
 @keyframes fadeInModal {
   from {
     opacity: 0;
@@ -201,50 +193,55 @@ section {
     transform: translateY(0);
   }
 }
-
-/* Aplica o efeito ao conteúdo do modal */
 .modal-content {
   animation: fadeInModal 0.5s ease-out;
 }
 
-
-/* === RESPONSIVIDADE EXTRA === */
-@media (max-width: 576px) {
-  .card-overlay {
-    padding: 1rem;
-  }
-
-  .card-content-static {
-    font-size: 0.8rem;
-  }
+/* === OVERLAY UTILITY === */
+.overlay-dark {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: 0.90;
+  z-index: 0;
 }
-@media (max-width: 600px) {
-  #brand-text {
-    font-size: 2rem;
-  }
 
-  #slogan-text {
-    font-size: 1rem;
-  }
-}
+/* === SOBRE (exemplo de responsividade) === */
 @media (max-width: 1300px) {
   .sobre-content {
     flex-direction: column;
     text-align: center;
   }
-
   .sobre-content > div {
     width: 100%;
   }
-
   .sobre-content img {
     width: 100%;
     height: auto;
     margin-bottom: 1.5rem;
   }
 }
-@media (min-width: 992px) {
-  #navbar-toggler {
-    display: none !important;
+
+/* === TEXTOS HERO EM TELAS MENORES === */
+@media (max-width: 600px) {
+  #brand-text {
+    font-size: 2rem;
+  }
+  #slogan-text {
+    font-size: 1rem;
+  }
+}
+
+/* === AJUSTES CARDS EM TELAS MENORES === */
+@media (max-width: 600px) {
+  .card-overlay {
+    padding: 1rem;
+  }
+  .card-content-static {
+    font-size: 0.8rem;
   }
 }
