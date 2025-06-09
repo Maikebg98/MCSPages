@@ -1,0 +1,257 @@
+/* === RESET & BASE === */
+* {
+  box-sizing: border-box;
+}
+html, body {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+body {
+  background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* === NAVBAR === */
+nav {
+  background-color: #111;
+}
+.custom-toggler-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  width: 1.8rem;
+  height: 1.8rem;
+  position: relative;
+}
+.custom-toggler-icon span {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 30px;
+  height: 2px;
+  background-color: #fff;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform-origin: center;
+  margin: 0;
+  transform: translate(-50%, -50%);
+}
+.custom-toggler-icon span:nth-child(1) {
+  top: calc(50% - 8px);
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+.custom-toggler-icon span:nth-child(2) {
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+.custom-toggler-icon span:nth-child(3) {
+  top: calc(50% + 8px);
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+button:not(.collapsed) .custom-toggler-icon span:nth-child(1) {
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+button:not(.collapsed) .custom-toggler-icon span:nth-child(2) {
+  opacity: 0;
+}
+button:not(.collapsed) .custom-toggler-icon span:nth-child(3) {
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+@media (min-width: 992px) {
+  #navbar-toggler {
+    display: none !important;
+  }
+}
+
+/* === MAIN & PAGE === */
+main, .pagina {
+  overflow-x: hidden;
+}
+
+/* === HERO === */
+#hero {
+  min-height: 100vh;
+  background: url('../images/hero-bg.webp') center center / cover no-repeat;
+  padding: 100px 10px;
+  position: relative;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: 0.90;
+  z-index: 0;
+}
+.hero-img {
+  max-width: 85%;
+  opacity: 0.95;
+  border-radius: 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  mix-blend-mode: multiply;
+}
+.hero-img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+#hero .container {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+/* === SCROLL MARGIN === */
+section {
+  scroll-margin-top: 60px;
+}
+
+/* === PORTFÓLIO CARDS === */
+.projeto-card {
+  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.projeto-card img {
+  object-fit: cover;
+  height: 200px;
+  width: 100%;
+}
+.projeto-card:hover {
+  transform: translateY(-5px);
+}
+.card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.card-title {
+  margin-bottom: 0.5rem;
+}
+.card-footer {
+  background-color: #1e1e1e;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  margin-top: auto;
+}
+
+#mensagem-sucesso {
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  padding: 15px;
+  border-radius: 5px;
+  font-weight: 600;
+}
+footer {
+  background-color: #111;
+}
+/* === WHATSAPP FLUTUANTE === */
+.whatsapp-float {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25d366;
+  color: white;
+  border-radius: 100%;
+  padding: 10px;
+  font-size: 24px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+  animation: pulse 2s infinite;
+}
+.whatsapp-float:hover {
+  background-color: #1ebe5d;
+  text-decoration: none;
+}
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* === MODAL ANIMATION === */
+@keyframes fadeInModal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.modal-content {
+  animation: fadeInModal 0.5s ease-out;
+}
+
+/* === OVERLAY UTILITY === */
+.overlay-dark {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: 0.90;
+  z-index: 0;
+}
+
+/* === SOBRE (exemplo de responsividade) === */
+@media (max-width: 1300px) {
+  .sobre-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  .sobre-content > div {
+    width: 100%;
+  }
+  .sobre-content img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* === TEXTOS HERO EM TELAS MENORES === */
+@media (max-width: 600px) {
+  #brand-text {
+    font-size: 2rem;
+  }
+  #slogan-text {
+    font-size: 1rem;
+  }
+}
+
+/* === AJUSTES CARDS EM TELAS MENORES === */
+@media (max-width: 600px) {
+  .card-overlay {
+    padding: 1rem;
+  }
+  .card-content-static {
+    font-size: 0.8rem;
+  }
+}
